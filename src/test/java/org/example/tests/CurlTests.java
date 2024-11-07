@@ -1,31 +1,33 @@
 package org.example.tests;
 
 import org.example.steps.CurlSteps;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.example.utils.RetryTestExtension;
 import io.qameta.allure.Allure;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 
-@ExtendWith(RetryTestExtension.class)
 public class CurlTests {
 
     CurlSteps curlSteps = new CurlSteps();
 
-    @Test
-    public void testCityApiResponseBajmak() {
-        Allure.step("Проверка ответа API для города Bajmak", () ->
+    @DisplayName("Проверка ответа API для города Bajmak")
+    @RepeatedTest(value = 3, name = "{displayName} - попытка {currentRepetition} из {totalRepetitions}")
+    public void testCityApiResponseBajmak(RepetitionInfo repetitionInfo) {
+        Allure.step("Попытка #" + repetitionInfo.getCurrentRepetition() + " проверки ответа API для города Bajmak", () ->
                 curlSteps.verifyCityApiResponse("bajmak"));
     }
 
-    @Test
-    public void testCityApiResponseMoscow() {
-        Allure.step("Проверка ответа API для города Moscow", () ->
+    @DisplayName("Проверка ответа API для города Moscow")
+    @RepeatedTest(value = 3, name = "{displayName} - попытка {currentRepetition} из {totalRepetitions}")
+    public void testCityApiResponseMoscow(RepetitionInfo repetitionInfo) {
+        Allure.step("Попытка #" + repetitionInfo.getCurrentRepetition() + " проверки ответа API для города Moscow", () ->
                 curlSteps.verifyCityApiResponse("moscow"));
     }
 
-    @Test
-    public void testCityApiResponseLondon() {
-        Allure.step("Проверка ответа API для города London", () ->
+    @DisplayName("Проверка ответа API для города London")
+    @RepeatedTest(value = 3, name = "{displayName} - попытка {currentRepetition} из {totalRepetitions}")
+    public void testCityApiResponseLondon(RepetitionInfo repetitionInfo) {
+        Allure.step("Попытка #" + repetitionInfo.getCurrentRepetition() + " проверки ответа API для города London", () ->
                 curlSteps.verifyCityApiResponse("london"));
     }
 }

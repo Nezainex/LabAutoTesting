@@ -15,7 +15,7 @@ public class CartPageLocators {
     }
 
     // Локатор для значка корзины
-    public static final By ICON_CART = By.xpath("//div[@id='headerCartDynamic']//div[@class='invitro-header-cart__icon']");
+    public static final By ICON_CART = By.xpath(".//div[@id='headerCartDynamic']//a//*[name()='svg']");
 
     // Локатор для очистки корзины (иконка удаления)
     public static final By CLEAR_CART_BUTTON = By.xpath("//button[contains(@class, 'CartProductsPanel_cartClear') and contains(., 'Очистить корзину')]");

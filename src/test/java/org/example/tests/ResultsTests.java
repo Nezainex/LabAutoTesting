@@ -1,15 +1,14 @@
 package org.example.tests;
 
 import org.example.steps.ResultsSteps;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.example.utils.RetryTestExtension;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import io.qameta.allure.Allure;
 
 import static com.codeborne.selenide.Selenide.open;
 
-@ExtendWith(RetryTestExtension.class)
 public class ResultsTests extends BaseTest {
 
     ResultsSteps resultsSteps = new ResultsSteps();
@@ -19,17 +18,19 @@ public class ResultsTests extends BaseTest {
         Allure.step("Открываем страницу с результатами", () -> open("https://www.invitro.ru/moscow/radiology/"));
     }
 
-    @Test
-    public void testResultsPageHeader() {
-        Allure.step("Проверка заголовка страницы с результатами", () -> {
+    @DisplayName("Проверка заголовка страницы с результатами")
+    @RepeatedTest(value = 3, name = "{displayName} - попытка {currentRepetition} из {totalRepetitions}")
+    public void testResultsPageHeader(RepetitionInfo repetitionInfo) {
+        Allure.step("Попытка #" + repetitionInfo.getCurrentRepetition() + " проверки заголовка страницы с результатами", () -> {
             resultsSteps.navigateToResultsPage("Results");
             resultsSteps.verifyResultsPageHeader("Введите индивидуальный номер заказа, чтобы посмотреть результаты анализов");
         });
     }
 
-    @Test
-    public void testEmptyFieldsValidation() {
-        Allure.step("Проверка валидации для пустых полей", () -> {
+    @DisplayName("Проверка валидации для пустых полей")
+    @RepeatedTest(value = 3, name = "{displayName} - попытка {currentRepetition} из {totalRepetitions}")
+    public void testEmptyFieldsValidation(RepetitionInfo repetitionInfo) {
+        Allure.step("Попытка #" + repetitionInfo.getCurrentRepetition() + " проверки валидации для пустых полей", () -> {
             resultsSteps.navigateToResultsPage("Results");
             Allure.step("Нажимаем на кнопку 'Найти результаты'", () -> resultsSteps.clickButton("Find Results"));
             Allure.step("Проверяем выделение поля 'Код ИНЗ'", () -> resultsSteps.verifyFieldHighlighted("Код ИНЗ"));
@@ -39,9 +40,10 @@ public class ResultsTests extends BaseTest {
         });
     }
 
-    @Test
-    public void testFilledFieldsValidation() {
-        Allure.step("Проверка заполненных полей", () -> {
+    @DisplayName("Проверка заполненных полей")
+    @RepeatedTest(value = 3, name = "{displayName} - попытка {currentRepetition} из {totalRepetitions}")
+    public void testFilledFieldsValidation(RepetitionInfo repetitionInfo) {
+        Allure.step("Попытка #" + repetitionInfo.getCurrentRepetition() + " проверки заполненных полей", () -> {
             resultsSteps.navigateToResultsPage("Results");
             Allure.step("Вводим данные заказа: код, дату рождения и фамилию", () -> resultsSteps.enterOrderDetails("231231231", "11.12.2000", "тест"));
             Allure.step("Нажимаем на кнопку 'Найти результаты'", () -> resultsSteps.clickButton("Find Results"));
