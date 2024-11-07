@@ -53,6 +53,15 @@
         <version>2.29.0</version>
     </dependency>
 
+    <!-- Allure JUnit 5  -->
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-junit5</artifactId>
+        <version>2.29.0</version>
+        <scope>test</scope>
+    </dependency>
+
     <!-- JUnit 5 -->
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
